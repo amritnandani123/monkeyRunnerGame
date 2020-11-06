@@ -34,6 +34,8 @@ function setup() {
  // creating groups for obasticle and bananas
   obstacleGroup = createGroup();
   bananaGroup = createGroup();
+
+
 }
 
 
@@ -58,7 +60,7 @@ function draw() {
 
     
     //adding jump 
-    if(keyDown("space") && monkey.isTouching(ground)) {
+    if(keyWentDown("space")) {
              monkey.velocityY=-40;
       
            }
@@ -70,7 +72,7 @@ function draw() {
      if(bananaGroup.isTouching(monkey)) {  
       bananaGroup.destroyEach();
       score2=score2+1;
-      monkey.scale=(0.15+1*score2/50);
+      monkey.scale=(0.15+1*score2/60);
 
       
 
@@ -85,7 +87,7 @@ function draw() {
         obstacleGroup.setLifetimeEach(-1);
        bananaGroup.setLifetimeEach(-1);
         monkey.addAnimation("moving",monkey_running);
-        monkey.scale=0.10;
+        monkey.scale=0.12;
         if(keyDown("space")) {
           reset();
         }
@@ -139,6 +141,7 @@ function reset() {
   obstacleGroup.destroyEach();
   bananaGroup.destroyEach();
   score1=0;
+  score2=0;
   monkey.scale=0.15;
 }
 
