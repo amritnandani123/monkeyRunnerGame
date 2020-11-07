@@ -41,7 +41,7 @@ function setup() {
 
 function draw() {
   background(220);
-  ground.velocityX= -5;
+  jungle.velocityX= -5;
   
   //creating ground illusion
   if (jungle.x < 0){
