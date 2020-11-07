@@ -1,4 +1,4 @@
-
+var jungle, jungle_img;
 var monkey , monkey_running
 var banana ,bananaImage, obstacle, obstacleImage
 var FoodGroup, obstacleGroup
@@ -16,7 +16,7 @@ function preload(){
   
   bananaImage = loadImage("banana.png");
   obstaceImage = loadImage("obstacle.png");
-  
+  jungle_img = loadImage("jungle.jpg"); 
 
  
 }
@@ -25,12 +25,18 @@ function preload(){
 
 function setup() {
  createCanvas(500,500)
+ 
+ jungle=createSprite(250,250);
+ jungle.addImage("jungle",jungle_img);
+ 
    monkey=createSprite(80,310); 
    monkey.addAnimation("moving",monkey_running);
    monkey.scale=0.15;
    
    ground=createSprite(250,480,500,8);
+   ground.visible=false;
   
+   
  // creating groups for obasticle and bananas
   obstacleGroup = createGroup();
   bananaGroup = createGroup();
@@ -41,13 +47,12 @@ function setup() {
 
 function draw() {
   background(220);
-  jungle.velocityX= -5;
-  
-  //creating ground illusion
+  jungle.velocityX=-5;
   if (jungle.x < 0){
     jungle.x = jungle.width/2;
   }
-  
+
+
   //adding gravity
     monkey.velocityY = monkey.velocityY + 3;
   
@@ -79,7 +84,7 @@ function draw() {
      if(bananaGroup.isTouching(monkey)) {  
       bananaGroup.destroyEach();
       score2=score2+1;
-      monkey.scale=(0.15+1*score2/60);
+      monkey.scale=(0.15+1*score2/50);
 
       
 
@@ -91,6 +96,7 @@ function draw() {
        
         obstacleGroup.setVelocityXEach(0);
         bananaGroup.setVelocityXEach(0);
+        jungle.velocityX=0;
         obstacleGroup.setLifetimeEach(-1);
        bananaGroup.setLifetimeEach(-1);
         monkey.addAnimation("moving",monkey_running);
