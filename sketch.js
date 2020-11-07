@@ -41,6 +41,13 @@ function setup() {
 
 function draw() {
   background(220);
+  ground.velocityX= -5;
+  
+  //creating ground illusion
+  if (jungle.x < 0){
+    jungle.x = jungle.width/2;
+  }
+  
   //adding gravity
     monkey.velocityY = monkey.velocityY + 3;
   
